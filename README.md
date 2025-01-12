@@ -1,6 +1,8 @@
 (Return to Home)[https://04mscott.github.io]
 # Housing-Price-Prediction-Model-
 
+In this project I used multiple forms of regression from the SciKit-Learn library within a Jupyter environment
+
 Importing Data + Data Cleaning
 ```Python
 import numpy as np
