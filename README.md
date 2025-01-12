@@ -92,7 +92,7 @@ sqft_living15	0
 sqft_lot15	0
 
 dtype: int64
-
+```Python
 df = df.drop(columns=['id'])
      
 
@@ -100,92 +100,9 @@ df['year'] = df['date'].dt.year
 df['month'] = df['date'].dt.month
 df['day'] = df['date'].dt.day
 df['weekday'] = df['date'].dt.weekday
-     
-Checking Linear Relationships
-
-sns.scatterplot(data=df, x='sqft_living', y='price', alpha=0.5)
-     
-<Axes: xlabel='sqft_living', ylabel='price'>
-
-
-sns.scatterplot(data=df, x='sqft_lot', y='price', alpha=0.5)
-     
-<Axes: xlabel='sqft_lot', ylabel='price'>
-
-
-sns.scatterplot(data=df, x='sqft_above', y='price', alpha=0.5)
-     
-<Axes: xlabel='sqft_above', ylabel='price'>
-
-
-sns.scatterplot(data=df, x='sqft_basement', y='price', alpha=0.5)
-     
-<Axes: xlabel='sqft_basement', ylabel='price'>
-
-
-sns.barplot(data=df, x='zipcode', y='price')
-     
-<Axes: xlabel='zipcode', ylabel='price'>
-
-
-sns.lineplot(data=df, x='waterfront', y='price')
-     
-<Axes: xlabel='waterfront', ylabel='price'>
-
-
-sns.barplot(data=df, x='bedrooms', y='price')
-     
-<Axes: xlabel='bedrooms', ylabel='price'>
-
-
-sns.lineplot(data=df, x='view', y='price')
-     
-<Axes: xlabel='view', ylabel='price'>
-
-
-sns.lineplot(data=df, x='yr_built', y='price')
-     
-<Axes: xlabel='yr_built', ylabel='price'>
-
-
-sns.lineplot(data=df, x='date', y='price')
-     
-<Axes: xlabel='date', ylabel='price'>
-
-
-sns.scatterplot(data=df, x='long', y='lat', hue='price', alpha=0.5)
-     
-<Axes: xlabel='long', ylabel='lat'>
-
-Linear Regression
-
-pip install catboost
-     
-Collecting catboost
-  Downloading catboost-1.2.7-cp310-cp310-manylinux2014_x86_64.whl.metadata (1.2 kB)
-Requirement already satisfied: graphviz in /usr/local/lib/python3.10/dist-packages (from catboost) (0.20.3)
-Requirement already satisfied: matplotlib in /usr/local/lib/python3.10/dist-packages (from catboost) (3.8.0)
-Requirement already satisfied: numpy<2.0,>=1.16.0 in /usr/local/lib/python3.10/dist-packages (from catboost) (1.26.4)
-Requirement already satisfied: pandas>=0.24 in /usr/local/lib/python3.10/dist-packages (from catboost) (2.2.2)
-Requirement already satisfied: scipy in /usr/local/lib/python3.10/dist-packages (from catboost) (1.13.1)
-Requirement already satisfied: plotly in /usr/local/lib/python3.10/dist-packages (from catboost) (5.24.1)
-Requirement already satisfied: six in /usr/local/lib/python3.10/dist-packages (from catboost) (1.16.0)
-Requirement already satisfied: python-dateutil>=2.8.2 in /usr/local/lib/python3.10/dist-packages (from pandas>=0.24->catboost) (2.8.2)
-Requirement already satisfied: pytz>=2020.1 in /usr/local/lib/python3.10/dist-packages (from pandas>=0.24->catboost) (2024.2)
-Requirement already satisfied: tzdata>=2022.7 in /usr/local/lib/python3.10/dist-packages (from pandas>=0.24->catboost) (2024.2)
-Requirement already satisfied: contourpy>=1.0.1 in /usr/local/lib/python3.10/dist-packages (from matplotlib->catboost) (1.3.0)
-Requirement already satisfied: cycler>=0.10 in /usr/local/lib/python3.10/dist-packages (from matplotlib->catboost) (0.12.1)
-Requirement already satisfied: fonttools>=4.22.0 in /usr/local/lib/python3.10/dist-packages (from matplotlib->catboost) (4.54.1)
-Requirement already satisfied: kiwisolver>=1.0.1 in /usr/local/lib/python3.10/dist-packages (from matplotlib->catboost) (1.4.7)
-Requirement already satisfied: packaging>=20.0 in /usr/local/lib/python3.10/dist-packages (from matplotlib->catboost) (24.1)
-Requirement already satisfied: pillow>=6.2.0 in /usr/local/lib/python3.10/dist-packages (from matplotlib->catboost) (10.4.0)
-Requirement already satisfied: pyparsing>=2.3.1 in /usr/local/lib/python3.10/dist-packages (from matplotlib->catboost) (3.2.0)
-Requirement already satisfied: tenacity>=6.2.0 in /usr/local/lib/python3.10/dist-packages (from plotly->catboost) (9.0.0)
-Downloading catboost-1.2.7-cp310-cp310-manylinux2014_x86_64.whl (98.7 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98.7/98.7 MB 7.9 MB/s eta 0:00:00
-Installing collected packages: catboost
-Successfully installed catboost-1.2.7
-
+```
+***Linear Regression***
+```Python
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split, GridSearchCV, cross_val_score
 from sklearn.linear_model import LinearRegression, ElasticNet, Lasso, Ridge
@@ -214,65 +131,66 @@ lr = LinearRegression()
      
 
 lr.fit(X_train, y_train)
-     
+```     
 LinearRegression()
 In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook.
 On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.
-
+```Python
 y_pred = lr.predict(X_test)
      
 
 print(mean_absolute_error(y_test, y_pred))
 print(mean_squared_error(y_test, y_pred))
 print(r2_score(y_test, y_pred))
-     
+```     
 123224.92269170494
 33957469163.087692
 0.7070935240287654
-Random Forest Regression
 
+**Random Forest Regression**
+```Python
 rfr = RandomForestRegressor()
      
 
 rfr.fit(X_train, y_train)
-     
+```     
 RandomForestRegressor()
 In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook.
 On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.
-
+```Python
 y_pred_rfr = rfr.predict(X_test)
      
 
 print(mean_absolute_error(y_test, y_pred_rfr))
 print(mean_squared_error(y_test, y_pred_rfr))
 print(r2_score(y_test, y_pred_rfr))
-     
+```     
 68147.32523664123
 13253078421.293613
 0.8856831032516632
-Gradient Booster Regression
-
+**Gradient Booster Regression**
+```Python
 gbr = GradientBoostingRegressor()
      
 
 gbr.fit(X_train, y_train)
-     
+```     
 GradientBoostingRegressor()
 In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook.
 On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.
-
+```Python
 y_pred_gbr = gbr.predict(X_test)
      
 
 print(mean_absolute_error(y_test, y_pred_gbr))
 print(mean_squared_error(y_test, y_pred_gbr))
 print(r2_score(y_test, y_pred_gbr))
-     
+```     
 77082.5534469952
 15982086856.46248
 0.8621435326257703
 Stacking Regressor
-
+```Python
 from sklearn.ensemble import StackingRegressor, VotingRegressor
      
 
@@ -295,20 +213,21 @@ StackingRegressor(estimators=[('rfr', RandomForestRegressor()),
                               ('gbr', GradientBoostingRegressor()),
                               ('ridge', Ridge())],
                   final_estimator=LinearRegression())
+```
 In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook.
 On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.
-
+```Python
 y_pred_sr = sr.predict(X_test)
      
 
 print(mean_absolute_error(y_test, y_pred_sr))
 print(mean_squared_error(y_test, y_pred_sr))
 print(r2_score(y_test, y_pred_sr))
-     
+```     
 69635.53805445331
 13766280176.490238
 0.8812563859113646
-
+```Python
 vr = VotingRegressor([
     ('rfr', rfr),
     ('gbr', gbr),
@@ -321,15 +240,17 @@ vr.fit(X_train, y_train)
 VotingRegressor(estimators=[('rfr', RandomForestRegressor()),
                             ('gbr', GradientBoostingRegressor()),
                             ('ridge', Ridge())])
+```
 In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook.
 On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.
-
+```Python
 y_pred_vr = vr.predict(X_test)
      
 
 print(mean_absolute_error(y_test, y_pred_sr))
 print(mean_squared_error(y_test, y_pred_sr))
 print(r2_score(y_test, y_pred_sr))
+```
      
 69635.53805445331
 13766280176.490238
